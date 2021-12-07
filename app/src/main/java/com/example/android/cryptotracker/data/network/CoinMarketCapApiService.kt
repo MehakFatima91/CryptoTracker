@@ -12,8 +12,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 
-const val coinMarketCapAPIKey = "d1949ffb-a632-47e3-80fd-84b391735687"
-
+const val coinMarketCapAPIKey = BuildConfig.API_KEY
 private const val BASE_URL = "https://pro-api.coinmarketcap.com"
 
 
