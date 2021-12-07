@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <variable
+            name="datum"
+            type="com.example.android.cryptotracker.data.model.Datum" />
+
+
+    </data>
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <com.google.android.material.textview.MaterialTextView
+           android:id="@+id/name"
+           android:layout_width="150dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="12dp"
+           android:layout_marginTop="8dp"
+           android:text="@{datum.name}"
+           android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           tools:text="Bitcoin" />
+
+       <com.google.android.material.textview.MaterialTextView
+           android:id="@+id/rank"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           bindRank="@{datum.cmcRank}"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/name"
+           android:layout_marginTop="4dp"
+           android:layout_marginStart="12dp"
+           tools:text="1"/>
+
+       <com.google.android.material.textview.MaterialTextView
+           android:id="@+id/ticker"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@{datum.symbol}"
+           app:layout_constraintStart_toEndOf="@id/rank"
+           app:layout_constraintTop_toTopOf="@id/rank"
+           android:layout_marginStart="10dp"
+           tools:text="BTC" />
+
+
+       <com.google.android.material.textview.MaterialTextView
+           android:id="@+id/price"
+           bindPrice="@{datum.quote.USD.price}"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+           app:layout_constraintBottom_toBottomOf="@id/ticker"
+           app:layout_constraintEnd_toStartOf="@+id/change"
+           app:layout_constraintStart_toEndOf="@id/name"
+           app:layout_constraintTop_toTopOf="@id/name"
+           app:layout_constraintVertical_bias="0.565"
+           android:textAlignment="textEnd"
+           tools:text="49,000" />
+
+       <com.google.android.material.textview.MaterialTextView
+           android:id="@+id/change"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="12dp"
+           bindPercent="@{datum.quote.USD.percentChange1h}"
+           android:textColor="@{datum.quote.USD.percentChange1h > 0 ? @color/green : @color/red}"
+           android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+           app:layout_constraintBottom_toBottomOf="@+id/price"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="@+id/price"
+           tools:text="1.75%"/>
+
+       <com.google.android.material.divider.MaterialDivider
+           android:layout_width="match_parent"
+           android:layout_height="0.6dp"
+           android:layout_marginTop="4dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/ticker" />
+
+
+
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
